@@ -7,7 +7,13 @@ import Home from './pages/Home';
 import Cottages from './pages/Cottages';
 import Activities from './pages/Activities';
 import About from './pages/About';
-import './App.css'; // Assuming you have a CSS file for styling
+import './App.css';
+import styled from 'styled-components';
+
+const AppContainer = styled.div`
+  background-color: #f0f0f0; /* Set your desired background color */
+  min-height: 100vh;
+`;
 
 function App() {
   const scrollToSection = (section) => {
@@ -20,6 +26,7 @@ function App() {
 
   return (
     <Router>
+      <AppContainer>
       <Header scrollToSection={scrollToSection} />
       <div className="app-container">
         <Element name="home">
@@ -36,6 +43,7 @@ function App() {
         </Element>
       </div>
       <Footer />
+      </AppContainer>
     </Router>
   );
 }

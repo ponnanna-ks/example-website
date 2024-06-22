@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import homeImage from '../assets/images/homestay.jpg';
+import ImageModal from '../components/ImageModal';
+import TitleBar from '../components/Title';
 
 const fadeIn = keyframes`
   from {
@@ -27,48 +29,47 @@ const Subtitle = styled.p`
   color: #34495e;
 `;
 
-const DataContainer = styled.div`
+const ImageContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+  animation: ${fadeIn} 2s ease-in;
 `;
 
-const DataItem = styled.div`
-  background: #ecf0f1;
-  border: 1px solid #bdc3c7;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 20px;
-  width: 200px;
-  transition: transform 0.3s;
+const StyledImage = styled.img`
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border: 5px solid #bdc3c7;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => setData(response.data.slice(0, 10)))  // Limiting to 10 items
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  const handleImageClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <Container>
-      <Title>Welcome to Hermitage Stays</Title>
+      <TitleBar>Welcome to Hermitage Stays</TitleBar>
       <Subtitle>Experience authenticity amidst nature.</Subtitle>
-      <DataContainer>
-        {data.map(item => (
-          <DataItem key={item.id}>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </DataItem>
-        ))}
-      </DataContainer>
+      <ImageContainer>
+        <StyledImage src={homeImage} alt="Hermitage Stays" onClick={handleImageClick} />
+      </ImageContainer>
+      {isModalOpen && <ImageModal src={homeImage} onClose={handleCloseModal} />}
     </Container>
   );
 };

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-
+import TitleBar from '../components/Title';
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -14,11 +14,6 @@ const Container = styled.div`
   text-align: center;
   padding: 20px;
   animation: ${fadeIn} 2s ease-in;
-`;
-
-const Title = styled.h1`
-  font-size: 2.5em;
-  color: #2c3e50;
 `;
 
 const Subtitle = styled.p`
@@ -48,6 +43,33 @@ const ImageItem = styled.div`
 `;
 
 const Cottages = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const cottagesRef = useRef(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    if (cottagesRef.current) {
+      observer.observe(cottagesRef.current);
+    }
+
+    return () => {
+      if (cottagesRef.current) {
+        observer.unobserve(cottagesRef.current);
+      }
+    };
+  }, []);
   const images = [
     "https://source.unsplash.com/random/300x200?house",
     "https://source.unsplash.com/random/300x200?cottage",
@@ -55,8 +77,9 @@ const Cottages = () => {
   ];
 
   return (
+    <div ref={cottagesRef}>
     <Container>
-      <Title>Our Cottages</Title>
+      <TitleBar title={"cottages"} animate={isVisible}>Our Cottages</TitleBar>
       <Subtitle>Experience luxury in our beautiful cottages.</Subtitle>
       <ImageContainer>
         {images.map((src, index) => (
@@ -66,6 +89,7 @@ const Cottages = () => {
         ))}
       </ImageContainer>
     </Container>
+    </div>
   );
 };
 

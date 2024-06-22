@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import homestay from "../assets/images/homestay.jpg"
 import homestay2 from '../assets/images/homestay2.jpg';
 import nature1 from '../assets/images/nature1.jpg';
 import nature2 from '../assets/images/nature2.jpg';
-
+import TitleBar from '../components/Title';
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -20,14 +20,9 @@ const slide = keyframes`
 `;
 
 const Container = styled.div`
-  text-align: center;
+  text-align: left;
   padding: 20px;
   animation: ${fadeIn} ease-in;
-`;
-
-const Title = styled.h1`
-  font-size: 2.5em;
-  color: #2c3e50;
 `;
 
 const Subtitle = styled.p`
@@ -61,6 +56,9 @@ const ImageItem = styled.div`
 `;
 
 const Activities = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const activitiesRef = useRef(null);
+
   const images = [
     homestay,
     homestay2,
@@ -72,9 +70,35 @@ const Activities = () => {
     nature2
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    if (activitiesRef.current) {
+      observer.observe(activitiesRef.current);
+    }
+
+    return () => {
+      if (activitiesRef.current) {
+        observer.unobserve(activitiesRef.current);
+      }
+    };
+  }, []);
+
   return (
+    <div ref={activitiesRef}>
     <Container>
-      <Title>Activities</Title>
+      <TitleBar title={"activities"} animate={isVisible}>Activities</TitleBar>
       <Subtitle>Enjoy a variety of activities during your stay.</Subtitle>
       <CarouselContainer>
         <CarouselInner>
@@ -86,6 +110,7 @@ const Activities = () => {
         </CarouselInner>
       </CarouselContainer>
     </Container>
+    </div>
   );
 };
 
