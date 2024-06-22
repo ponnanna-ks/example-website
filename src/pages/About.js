@@ -37,10 +37,11 @@ const About = () => {
   return (
     <Container>
       <Title>About Us</Title>
-      <Subtitle>Learn more about Ayatana Coorg.</Subtitle>
+      <Subtitle>Learn more about Hermitage Stays.</Subtitle>
       <Content>
-        <p>Ayatana Coorg is a luxury resort nestled in the heart of Coorg, offering a serene escape from the hustle and bustle of city life. Our resort features beautiful cottages, a variety of activities, and top-notch amenities to ensure a comfortable and memorable stay.</p>
-        <p>We are committed to providing our guests with an exceptional experience, blending modern luxury with the natural beauty of Coorg. Whether you're looking for a relaxing retreat or an adventurous getaway, Ayatana Coorg has something for everyone.</p>
+        <p>Experience Tranquility in the Heart of Coorg
+        Nestled amidst the lush greenery of Coorg, The Hermitage offers a serene escape from the hustle and bustle of city life. Our homestay is a haven for nature lovers, adventure seekers, and those in need of a peaceful retreat.</p>
+        <p>At The Hermitage, you wake up to the symphony of chirping birds, the fragrance of blooming flowers, and the gentle rustle of leaves. Our beautifully designed homestay blends seamlessly with the surrounding landscape, providing a perfect balance of comfort and nature.</p>
       </Content>
     </Container>
   );

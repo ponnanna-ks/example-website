@@ -1,5 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import homestay from "../assets/images/homestay.jpg"
+import homestay2 from '../assets/images/homestay2.jpg';
+import nature1 from '../assets/images/nature1.jpg';
+import nature2 from '../assets/images/nature2.jpg';
 
 const fadeIn = keyframes`
   from {
@@ -10,10 +14,15 @@ const fadeIn = keyframes`
   }
 `;
 
+const slide = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-300%); }
+`;
+
 const Container = styled.div`
   text-align: center;
   padding: 20px;
-  animation: ${fadeIn} 2s ease-in;
+  animation: ${fadeIn} ease-in;
 `;
 
 const Title = styled.h1`
@@ -26,45 +35,56 @@ const Subtitle = styled.p`
   color: #34495e;
 `;
 
-const ImageContainer = styled.div`
+const CarouselContainer = styled.div`
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  margin-top: 20px
+`;
+
+const CarouselInner = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
+  animation: ${slide} 10s infinite linear;
 `;
 
 const ImageItem = styled.div`
-  margin: 10px;
+  min-width: 33.33%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  transition: transform 0.3s;
   img {
-    width: 300px;
+    width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
-    transition: transform 0.3s;
-    &:hover {
-      transform: scale(1.05);
-    }
   }
 `;
 
 const Activities = () => {
   const images = [
-    "https://source.unsplash.com/random/300x200?hiking",
-    "https://source.unsplash.com/random/300x200?swimming",
-    "https://source.unsplash.com/random/300x200?cycling"
+    homestay,
+    homestay2,
+    nature1,
+    nature2,
+    homestay,
+    homestay2,
+    nature1,
+    nature2
   ];
 
   return (
     <Container>
       <Title>Activities</Title>
       <Subtitle>Enjoy a variety of activities during your stay.</Subtitle>
-      <ImageContainer>
-        {images.map((src, index) => (
-          <ImageItem key={index}>
-            <img src={src} alt={`Activity ${index + 1}`} />
-          </ImageItem>
-        ))}
-      </ImageContainer>
+      <CarouselContainer>
+        <CarouselInner>
+          {images.map((src, index) => (
+            <ImageItem key={index}>
+              <img src={src} alt={`Activity ${index + 1}`} />
+            </ImageItem>
+          ))}
+        </CarouselInner>
+      </CarouselContainer>
     </Container>
   );
 };

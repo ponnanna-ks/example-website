@@ -59,8 +59,8 @@ const Home = () => {
 
   return (
     <Container>
-      <Title>Welcome to Ayatana Coorg</Title>
-      <Subtitle>Experience the luxury amidst nature.</Subtitle>
+      <Title>Welcome to Hermitage Stays</Title>
+      <Subtitle>Experience authenticity amidst nature.</Subtitle>
       <DataContainer>
         {data.map(item => (
           <DataItem key={item.id}>

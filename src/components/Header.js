@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
+//import './Header.css'; // Assuming you have a CSS file for styling
 
-const Header = () => (
-  <header>
+const Header = ({ scrollToSection }) => (
+  <header className="header">
     <nav>
       <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/cottages">Cottages</Link></li>
-        <li><Link to="/activities">Activities</Link></li>
-        <li><Link to="/about">About</Link></li>
+        <li><Link to="home" smooth={true} duration={800}>Home</Link></li>
+        <li><Link to="cottages" smooth={true} duration={800}>Cottages</Link></li>
+        <li><Link to="activities" smooth={true} duration={800}>Activities</Link></li>
+        <li><Link to="about" smooth={true} duration={800}>About</Link></li>
       </ul>
     </nav>
   </header>
