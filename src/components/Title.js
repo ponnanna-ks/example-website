@@ -59,6 +59,7 @@ const TitleText = styled.h1`
     background-color: transparent;
     color: #FFF;
     animation: ${breathe} 1s ease-out;
+    font-size: 5.0em;
   `}
 `;
 

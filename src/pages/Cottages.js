@@ -1,6 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TitleBar from '../components/Title';
+import { FaWifi } from "react-icons/fa6";
+import { PiTelevisionSimpleFill } from "react-icons/pi";
+import { MdFreeBreakfast } from "react-icons/md";
+import nature1 from '../assets/images/nature1.jpg';
 
 const fadeIn = keyframes`
   from {
@@ -12,19 +16,22 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  display: flex; /* Display as flex container */
+  display: flex;
   padding: 20px;
   animation: ${fadeIn} 2s ease-in;
+  flex-wrap: wrap; /* Ensure content wraps on smaller screens */
 `;
 
 const TextContainer = styled.div`
-  flex: 1; /* Take remaining space */
+  flex: 1;
+  min-width: 300px; /* Ensure a minimum width */
+  margin-right: 20px; /* Space between text and image */
 `;
 
 const Header = styled.header`
-  padding: 20px;
+  padding: 20px 0;
   background-color: #f8f8f8;
-  text-align: left; /* Align text left */
+  text-align: left;
 `;
 
 const Subtitle = styled.p`
@@ -49,36 +56,31 @@ const Amenity = styled.div`
   text-align: center;
 `;
 
-const AmenityIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
 const AmenityText = styled.p`
   margin-top: 5px;
   font-size: 1em;
 `;
 
 const ImageContainer = styled.div`
-  text-align: center;
+  flex: 1;
+  min-width: 300px; /* Ensure a minimum width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 `;
 
-const CottageImage = styled.div`
-  width: 500px;
-  height: 300px;
-  background-color: #ddd;
+const CottageImage = styled.img`
+  width: 100%;
+  height: auto;
+  max-width: 500px; /* Ensure a maximum width */
   border-radius: 10px;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const Cottages = () => {
   const [isVisible, setIsVisible] = useState(false);
   const cottagesRef = useRef(null);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -117,23 +119,21 @@ const Cottages = () => {
           </Description>
           <Amenities>
             <Amenity>
-              <AmenityIcon src="wifi-icon.png" alt="Free Wifi" />
+              <FaWifi/>
               <AmenityText>Free Wifi</AmenityText>
             </Amenity>
             <Amenity>
-              <AmenityIcon src="cable-tv-icon.png" alt="Cable TV" />
+              <PiTelevisionSimpleFill/>
               <AmenityText>Cable TV</AmenityText>
             </Amenity>
             <Amenity>
-              <AmenityIcon src="breakfast-icon.png" alt="Breakfast Included" />
+              <MdFreeBreakfast/>
               <AmenityText>Breakfast Included</AmenityText>
             </Amenity>
           </Amenities>
         </TextContainer>
         <ImageContainer>
-          <CottageImage>
-            <p>Image Placeholder</p>
-          </CottageImage>
+          <CottageImage src={nature1} alt="Cottage" />
         </ImageContainer>
       </Container>
     </div>

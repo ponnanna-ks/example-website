@@ -109,7 +109,6 @@ const Activities = () => {
     <div ref={activitiesRef}>
     <Container>
       <TitleBar title={"activities"} animate={isVisible}>Activities</TitleBar>
-      <Subtitle>Enjoy a variety of activities during your stay.</Subtitle>
       <CarouselContainer>
         <CarouselInner>
           {images.map((src, index) => (
