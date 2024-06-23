@@ -1,0 +1,69 @@
+.cottages-container {
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.header {
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  color: #34495e;
+  margin: 20px 0;
+}
+
+.description {
+  font-size: 1.2em;
+  color: #333;
+  margin: 20px 0;
+}
+
+.amenities {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.amenity {
+  margin: 0 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.amenity-icon {
+  width: 24px; /* Adjust size as needed */
+  height: 24px; /* Adjust size as needed */
+}
+
+.amenity-text {
+  margin-top: 5px;
+  font-size: 1em;
+}
+
+.image-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cottage-image {
+  width: 500px;
+  height: 300px;
+  background-color: #ddd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

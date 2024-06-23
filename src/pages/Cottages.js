@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import TitleBar from '../components/Title';
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -11,9 +12,19 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  text-align: center;
+  display: flex; /* Display as flex container */
   padding: 20px;
   animation: ${fadeIn} 2s ease-in;
+`;
+
+const TextContainer = styled.div`
+  flex: 1; /* Take remaining space */
+`;
+
+const Header = styled.header`
+  padding: 20px;
+  background-color: #f8f8f8;
+  text-align: left; /* Align text left */
 `;
 
 const Subtitle = styled.p`
@@ -21,25 +32,47 @@ const Subtitle = styled.p`
   color: #34495e;
 `;
 
-const ImageContainer = styled.div`
+const Description = styled.p`
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 20px;
+`;
+
+const Amenities = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
 `;
 
-const ImageItem = styled.div`
-  margin: 10px;
-  img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s;
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
+const Amenity = styled.div`
+  margin: 0 15px;
+  text-align: center;
+`;
+
+const AmenityIcon = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+const AmenityText = styled.p`
+  margin-top: 5px;
+  font-size: 1em;
+`;
+
+const ImageContainer = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
+
+const CottageImage = styled.div`
+  width: 500px;
+  height: 300px;
+  background-color: #ddd;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Cottages = () => {
@@ -70,25 +103,39 @@ const Cottages = () => {
       }
     };
   }, []);
-  const images = [
-    "https://source.unsplash.com/random/300x200?house",
-    "https://source.unsplash.com/random/300x200?cottage",
-    "https://source.unsplash.com/random/300x200?resort"
-  ];
 
   return (
     <div ref={cottagesRef}>
-    <Container>
-      <TitleBar title={"cottages"} animate={isVisible}>Our Cottages</TitleBar>
-      <Subtitle>Experience luxury in our beautiful cottages.</Subtitle>
-      <ImageContainer>
-        {images.map((src, index) => (
-          <ImageItem key={index}>
-            <img src={src} alt={`Cottage ${index + 1}`} />
-          </ImageItem>
-        ))}
-      </ImageContainer>
-    </Container>
+      <Container>
+        <TextContainer>
+          <Header>
+            <TitleBar title={"Our Cottages"} animate={isVisible}>Our Cottages</TitleBar>
+            <Subtitle>Designed for your utmost comfort, a stay in one of our luxury cottages is guaranteed to bring you closer to Mother Nature’s soul than you have ever been.</Subtitle>
+          </Header>
+          <Description>
+            Imagine waking up after a restful night of sleep on exquisite, soft bedding, to a private balcony with a stunning view while sipping on a warm cup of coffee. With a range of amenities, our cottages are designed to make you feel at home while you’re on vacation.
+          </Description>
+          <Amenities>
+            <Amenity>
+              <AmenityIcon src="wifi-icon.png" alt="Free Wifi" />
+              <AmenityText>Free Wifi</AmenityText>
+            </Amenity>
+            <Amenity>
+              <AmenityIcon src="cable-tv-icon.png" alt="Cable TV" />
+              <AmenityText>Cable TV</AmenityText>
+            </Amenity>
+            <Amenity>
+              <AmenityIcon src="breakfast-icon.png" alt="Breakfast Included" />
+              <AmenityText>Breakfast Included</AmenityText>
+            </Amenity>
+          </Amenities>
+        </TextContainer>
+        <ImageContainer>
+          <CottageImage>
+            <p>Image Placeholder</p>
+          </CottageImage>
+        </ImageContainer>
+      </Container>
     </div>
   );
 };
