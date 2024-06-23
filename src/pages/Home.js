@@ -145,9 +145,8 @@ const Home = () => {
         <li><Link to="about" smooth={true} duration={800} onClick={() => setMenuOpen(false)}>About</Link></li>
       </NavMenu>
         <TitleBar title="home" animate={isVisible}>
-          The Hermitage Stays
+          A Zen Experience.
         </TitleBar>
-        <Subtitle>A Zen Experience.</Subtitle>
       </Overlay>
     </Container>
   );

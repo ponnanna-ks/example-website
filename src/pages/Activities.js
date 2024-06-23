@@ -16,7 +16,12 @@ const fadeIn = keyframes`
 
 const slide = keyframes`
   0% { transform: translateX(0); }
-  100% { transform: translateX(-300%); }
+  100% { transform: translateX(-100%); }
+`;
+
+const slide2 = keyframes`
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
 `;
 
 const Container = styled.div`
@@ -40,6 +45,11 @@ const CarouselContainer = styled.div`
 const CarouselInner = styled.div`
   display: flex;
   animation: ${slide} 10s infinite linear;
+`;
+
+const CarouselInner2 = styled.div`
+  display: flex;
+  animation: ${slide2} 10s infinite linear;
 `;
 
 const ImageItem = styled.div`
@@ -108,6 +118,15 @@ const Activities = () => {
             </ImageItem>
           ))}
         </CarouselInner>
+      </CarouselContainer>
+      <CarouselContainer>
+        <CarouselInner2>
+          {images.map((src, index) => (
+            <ImageItem key={index}>
+              <img src={src} alt={`Activity ${index + 1}`} />
+            </ImageItem>
+          ))}
+        </CarouselInner2>
       </CarouselContainer>
     </Container>
     </div>
