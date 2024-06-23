@@ -27,7 +27,6 @@ function App() {
   return (
     <Router>
       <AppContainer>
-      <Header scrollToSection={scrollToSection} />
       <div className="app-container">
         <Element name="home">
           <Home />
